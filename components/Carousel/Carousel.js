@@ -1,10 +1,10 @@
 class Carousel {
     constructor(carousel) {
+        // class essentially begins here
         this.carousel = carousel;
 
         this.photos;
         this.attachDataCount();
-        console.log(this.photos[0]);
         
         this.leftButton = carousel.querySelector('.left-button');
         this.leftButton.addEventListener('click', () => this.moveLeft());
@@ -23,6 +23,13 @@ class Carousel {
         this.photos = Array.from(this.carousel.children).filter(photo => {
             if(photo.src) {
                 photo.setAttribute('data-index', count);
+
+                if(photo.dataset.index == 1) {
+                    // code to setup the carousel because display functionality not working in LESS
+                    // should only ever run once
+                    photo.setAttribute('class', 'active-photo');
+                    photo.setAttribute('style', 'display: block');
+                }
                 count++;
                 return photo;
             }
@@ -92,7 +99,6 @@ class Carousel {
     }
 
     moveRight() {
-        console.log('moving right');
         this.photos.forEach(photo => {
             photo.setAttribute('style', 'display: none');
           });
@@ -157,10 +163,7 @@ class Carousel {
     getCurrentIndex() {
         this.currentIndex = document.querySelector('.active-photo');
         this.currentIndex = this.currentIndex.dataset.index;
-        console.log(this.currentIndex);
     }
-
-
 }
 
 let carousel = document.querySelector('.carousel');
