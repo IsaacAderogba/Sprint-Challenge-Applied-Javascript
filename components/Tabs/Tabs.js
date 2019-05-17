@@ -79,6 +79,31 @@ class TabCard {
 
 */
 
+// create articleGenerator class
+
+
+// dummy article data
+const articleData = [
+  {
+    headline: 'Flutter vs React Native vs Xamarin',
+    author: 'By MAX GOODBOYE',
+    category: 'bootstrap',
+    imgSrc: './assets/max.jpg'
+  },
+  {
+    headline: 'Google Developers Conference',
+    author: "By SIR RUFF'N'STUFF",
+    category: 'technology',
+    imgSrc: './assets/sir.jpg'
+  },
+  {
+    headline: 'The "THIS" keyword',
+    author: 'By BONES R. LIFE',
+    category: 'javascript',
+    imgSrc: './assets/bones.jpg'
+  },
+]
+
 let tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
   new TabLink(tab);
