@@ -82,8 +82,60 @@ class TabCard {
 // create articleGenerator class
 class ArticleGenerator {
   constructor(articleData) {
+    // article data
     this.articleData = articleData;
-    console.log(this.articleData);
+    this.category = this.articleData.category;
+    this.headline = this.articleData.headline;
+    this.imgSrc = this.articleData.imgSrc;
+    this.authorName = this.articleData.author;
+
+    // parent div
+    this.cardContainer = document.createElement('div');
+
+    // construct article
+    this.constructCardContainer();
+    this.constructHeadline();
+    this.constructAuthor();
+  }
+
+  constructCardContainer() {
+    this.cardContainer.setAttribute('class', 'card');
+    this.cardContainer.setAttribute('data-tab', `${this.category}`);
+  }
+
+  constructHeadline() {
+    const headline = document.createElement('div');
+    headline.setAttribute('class', 'headline');
+    headline.textContent = this.headline;
+    this.cardContainer.append(headline);
+  }
+
+  constructAuthor() {
+    // create author structure
+    this.author = document.createElement('div');
+    this.author.setAttribute('class', 'author');
+
+    this.constructAuthorImage();
+    this.constructAuthorName();
+
+    this.cardContainer.appendChild(this.author);
+  }
+
+  constructAuthorImage() {
+    const imageContainer = document.createElement('div');
+    imageContainer.setAttribute('class', 'img-container');
+
+    const image = document.createElement('img');
+    image.src = this.imgSrc;
+    imageContainer.append(image);
+
+    this.author.appendChild(imageContainer);
+  }
+
+  constructAuthorName() {
+    const authorsName = document.createElement('span');
+    authorsName.textContent = this.authorName;
+    this.author.appendChild(authorsName);
   }
 }
 
@@ -114,7 +166,8 @@ const articleData = [
 let cardsContainer = document.querySelector('.cards-container');
 
 articleData.forEach(article => {
-  new ArticleGenerator(article);
+  let newArticle = new ArticleGenerator(article);
+  cardsContainer.append(newArticle.cardContainer);
 });
 
 let tabs = document.querySelectorAll('.tab');
