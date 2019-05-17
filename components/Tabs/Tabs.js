@@ -80,6 +80,12 @@ class TabCard {
 */
 
 // create articleGenerator class
+class ArticleGenerator {
+  constructor(articleData) {
+    this.articleData = articleData;
+    console.log(this.articleData);
+  }
+}
 
 
 // dummy article data
@@ -103,6 +109,13 @@ const articleData = [
     imgSrc: './assets/bones.jpg'
   },
 ]
+
+// target the cards-container class
+let cardsContainer = document.querySelector('.cards-container');
+
+articleData.forEach(article => {
+  new ArticleGenerator(article);
+});
 
 let tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
